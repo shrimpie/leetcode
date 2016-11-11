@@ -89,6 +89,15 @@ public:
 
 	vector<int> preorder_traverse_iter()
 	{
+		// Remember the order.
+		// 1. Each time you meet a node, add the node value to the result,
+		//    since it's definitely the current root.
+		// 2. Whenever the node has a right child, cached it in stack, and advances
+		//    current node to its left child.
+		// 3. When left child is NULL, then left subtree is done. Start poping out 
+		//    cached right child.
+		// 4. Recurse.
+
 		vector<int> node_vals;
 		TreeNode* cur = root;
 		stack<TreeNode*> s;
@@ -113,6 +122,14 @@ public:
 
 	vector<int> inorder_traverse_iter()
 	{
+		// Remember the order like this.
+		// 1. Each time you met a node, push it to stack, cause you want to 
+		//    find the left-most node.
+		// 2. When reach left-most, it's the root of itself, pop value from
+		//    the stack, you can start adding values to the result.
+		// 3. Advance the current node to its right child.
+		// 4. Recurse.
+
 		vector<int> node_vals;
 		TreeNode* cur = root;
 		stack<TreeNode*> s;
@@ -141,6 +158,16 @@ public:
 
 	vector<int> postorder_traverse_iter()
 	{
+		// This one is a little bit trickier.
+		// 1. Push the root node in the stack.
+		// 2. Starting poping from the stack. If met leaf nodes, or current 
+		//    top is previous top's parent, then you have traversed the two
+		//    subtrees, you can safely add the root value now.
+		// 3. For intermediate nodes, cache them in first right then left order
+		//    in the stack, so they can get popped out in the right order.
+		// 4. If you cannot understand this, run a simple example. Then you'll
+		//    get it.
+		// 
 		stack<TreeNode*> st;
 		vector<int> res;
 		if(!root)

@@ -38,7 +38,8 @@ bool find_word(vector<vector<char> >& board, vector<vector<bool> >& visited,
 	vector<int> dx = { -1, 1, 0, 0 };
 	vector<int> dy = { 0, 0, -1, 1 };
 	for(int i = 0; i < dx.size(); ++i)
-	    if(find_word(board, visited, row + dx[i], col + dy[i], word, char_cnt + 1))
+	    if(find_word(board, visited, row + dx[i], col + dy[i], 
+	    	         word, char_cnt + 1))
 	        return true;  
     
     visited[row][col] = false;
