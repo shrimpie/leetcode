@@ -71,6 +71,31 @@ public:
 			add_node(v, root);
 	}
 
+	// Inorder traversal application
+	int kth_smallest(int k)
+	{
+		int cnt = 0;
+		stack<TreeNode*> s;
+		TreeNode* p = root;
+		while(p || !s.empty())
+		{
+			// Find the left-most and push the nodes in s
+			while(p)
+			{
+				s.push(p);
+				p = p->left;
+			}
+			p = s.top(); s.pop();
+			++cnt;
+			if(cnt == k)
+				return p->val;
+			// When done with current root's left, 
+			// check right subtree.
+			p = p->right;
+		}
+		return 0;
+	}
+
 	vector<int> inorder_traverse_recur()
 	{
 		vector<int> node_vals;
@@ -240,6 +265,10 @@ int main()
 	for(int i = 0; i < ans.size(); ++i)
 		res &= (ans[i] == i + 1);
 
+	cout << "kth smallest test case 1 returns "
+	     << (bt.kth_smallest(3) == 3 ? "True" : "False")
+	     << endl;
+
 	cout << "Inorder traverse test case returns "
 	     << (res ? "True" : "False")
 	     << endl;
@@ -261,6 +290,8 @@ int main()
 	cout << "Postorder traverse tese case returns "
 	     << (res ? "True" : "False")
 	     << endl;
+
+
 
 	return 0;
 }

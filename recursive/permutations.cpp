@@ -14,7 +14,7 @@ using namespace std;
 // [1, 2, 3]
 // First round: 1 [2, 3]
 //            : 1 [2 [3]], add to result.
-//            :  1 [3 [2]], add to result.
+//            : 1 [3 [2]], add to result.
 // Swap 1 and 2: 2 [1, 3]
 //             : 2 [1 [3]], add to result.
 //             : 2 [3 [1]], add to result.
@@ -22,11 +22,11 @@ using namespace std;
 //    
 void perm(vector<int> num, int k, int n, vector<vector<int> >& res)
 {
-	if( k == n)
+	if(k == n)
 		res.push_back(num);
 	else
 	{
-		for(int i = k; i <=n; ++i)
+		for(int i = k; i <= n; ++i)
 		{
 			swap(num[k], num[i]);
 			perm(num, k+1, n, res);

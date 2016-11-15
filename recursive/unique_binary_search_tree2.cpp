@@ -118,10 +118,6 @@ int main()
               ans[4] == bsts[4]) ? "True" : "False")
          << endl;
 	
-
-
-
-
 	return 0;
 }
 
